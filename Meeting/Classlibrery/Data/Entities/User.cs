@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace API.Data.Entities
+namespace Classlibrery.Data.Entities
 {
-    public class AppUser:IdentityUser
+    public class User:IdentityUser<int>
     {
         
         public string FullName { get; set; } = string.Empty;
@@ -12,8 +12,8 @@ namespace API.Data.Entities
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateModified { get; set; } = DateTime.Now;
         public DateTime DateOfBirth { get; set; }
-        public string Country { get; set; } = string.Empty;
-        public string City { get; set; } = string.Empty;
+        public string? Country { get; set; }
+        public string? City { get; set; } 
 
         //hobbies
         //events

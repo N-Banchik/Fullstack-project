@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Classlibrery.Data.Migrations
+namespace DataAccess.Data.Migrations
 {
     public partial class initialUserOnly : Migration
     {

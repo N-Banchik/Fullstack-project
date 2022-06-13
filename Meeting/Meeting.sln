@@ -29,7 +29,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client", "client\", "{7A721
 		SlnRelativePath = "client\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classlibrery", "Classlibrery\Classlibrery.csproj", "{32A226E5-98B6-47B6-94E6-8E4B28277F45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "Classlibrery\DataAccess.csproj", "{32A226E5-98B6-47B6-94E6-8E4B28277F45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

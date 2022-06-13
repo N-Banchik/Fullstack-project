@@ -1,13 +1,13 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Classlibrery.Data.Entities;
-using Classlibrery.Services.Interfaces;
+using DataAccess.Data.Entities;
+using DataAccess.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Classlibrery.Services
+namespace DataAccess.Services
 {
     public class TokenService : ITokenService
     {

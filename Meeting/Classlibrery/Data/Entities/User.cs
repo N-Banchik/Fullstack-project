@@ -1,22 +1,28 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using DataAccess.Data.Entities.Bridge_Entities;
+using Microsoft.AspNetCore.Identity;
 
-namespace Classlibrery.Data.Entities
+namespace DataAccess.Data.Entities
 {
-    public class User:IdentityUser<int>
+    public class User : IdentityUser<int>
     {
-        
-        public string FullName { get; set; } = string.Empty;
+
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
+        public string FullName { get { return FullName; } set { FullName = $"{FirstName} {LastName}"; } }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateModified { get; set; } = DateTime.Now;
         public DateTime DateOfBirth { get; set; }
         public string? Country { get; set; }
-        public string? City { get; set; } 
+        public string? City { get; set; }
 
-        //hobbies
-        //events
+        public int PhotoId { get; set; }
+        public Photo<User>? Photo { get; set; }
+        public ICollection<UserHobby>? Hobbies { get; set; }
+        public ICollection<UserEvent>? EventsAttend { get; set; }
+        public ICollection<Guide>? Guides { get; set; }
+        public ICollection<Event>? EventsCreated { get; set; }
+        public ICollection<Post>? Posts { get; set; }
+
 
     }
 }

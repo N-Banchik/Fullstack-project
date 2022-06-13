@@ -1,11 +1,11 @@
-﻿using Classlibrery.Data;
-using Classlibrery.Data.Entities;
-using Classlibrery.DataAccessLayer.IRepository;
-using Classlibrery.Services.Interfaces;
+﻿using DataAccess.Data;
+using DataAccess.Data.Entities;
+using DataAccess.DataAccessLayer.IRepository;
+using DataAccess.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Classlibrery.DataAccessLayer.Reposetories
+namespace DataAccess.DataAccessLayer.Reposetories
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {

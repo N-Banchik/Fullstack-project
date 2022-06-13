@@ -1,5 +1,5 @@
-﻿using Classlibrery.Data;
-using Classlibrery.Data.Entities;
+﻿using DataAccess.Data;
+using DataAccess.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 

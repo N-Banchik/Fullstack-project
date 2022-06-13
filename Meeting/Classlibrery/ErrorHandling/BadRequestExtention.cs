@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Classlibrery.ErrorHandling
+namespace DataAccess.ErrorHandling
 {
     public class BadRequestExtention:Exception
     {

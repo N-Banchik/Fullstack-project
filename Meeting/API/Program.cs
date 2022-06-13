@@ -1,6 +1,6 @@
 using API;
-using Classlibrery.Data;
-using Classlibrery.Data.Entities;
+using DataAccess.Data;
+using DataAccess.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +22,8 @@ try
     await roleManager.CreateAsync(new IdentityRole<int>("Member"));
     await roleManager.CreateAsync(new IdentityRole<int>("Admin"));
     await context.SaveChangesAsync();
+    context.Add(new Category { CategoryName = "Test", Description = "Test" });
+    context.SaveChanges();
 
     //await Seed.seedUsers(context);
 }

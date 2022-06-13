@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Classlibrery.DataAccessLayer.IRepository
+namespace DataAccess.DataAccessLayer.IRepository
 {
     public interface IBaseRepository<T> where T : class
     {

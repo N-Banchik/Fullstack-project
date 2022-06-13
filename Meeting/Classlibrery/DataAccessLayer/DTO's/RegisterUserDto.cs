@@ -1,4 +1,4 @@
-﻿namespace Classlibrery.DataAccessLayer.DTO_s
+﻿namespace DataAccess.DataAccessLayer.DTO_s
 {
     public class RegisterUserDto
     {

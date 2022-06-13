@@ -1,6 +1,6 @@
-﻿using Classlibrery.DataAccessLayer.DTO_s;
+﻿using DataAccess.DataAccessLayer.DTO_s;
 
-namespace Classlibrery.DataAccessLayer.IRepository
+namespace DataAccess.DataAccessLayer.IRepository
 {
     public interface IAccountRepository
     {

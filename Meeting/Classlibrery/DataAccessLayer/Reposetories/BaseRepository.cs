@@ -1,8 +1,8 @@
-﻿using Classlibrery.DataAccessLayer.IRepository;
+﻿using DataAccess.DataAccessLayer.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Classlibrery.DataAccessLayer.Reposetories
+namespace DataAccess.DataAccessLayer.Reposetories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {

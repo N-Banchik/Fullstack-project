@@ -1,13 +1,13 @@
-﻿using Classlibrery.Data;
-using Classlibrery.Data.Entities;
-using Classlibrery.DataAccessLayer.DTO_s;
-using Classlibrery.DataAccessLayer.IRepository;
-using Classlibrery.ErrorHandling;
-using Classlibrery.Services.Interfaces;
+﻿using DataAccess.Data;
+using DataAccess.Data.Entities;
+using DataAccess.DataAccessLayer.DTO_s;
+using DataAccess.DataAccessLayer.IRepository;
+using DataAccess.ErrorHandling;
+using DataAccess.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Classlibrery.DataAccessLayer.Reposetories
+namespace DataAccess.DataAccessLayer.Reposetories
 {
     public class AccountRepository : BaseRepository<User>, IAccountRepository
     {

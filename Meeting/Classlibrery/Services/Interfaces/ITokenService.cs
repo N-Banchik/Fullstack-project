@@ -1,6 +1,6 @@
-using Classlibrery.Data.Entities;
+using DataAccess.Data.Entities;
 
-namespace Classlibrery.Services.Interfaces
+namespace DataAccess.Services.Interfaces
 {
     public interface ITokenService
     {

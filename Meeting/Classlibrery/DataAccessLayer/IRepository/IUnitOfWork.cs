@@ -1,4 +1,4 @@
-﻿namespace Classlibrery.DataAccessLayer.IRepository
+﻿namespace DataAccess.DataAccessLayer.IRepository
 {
     public interface IUnitOfWork
     {

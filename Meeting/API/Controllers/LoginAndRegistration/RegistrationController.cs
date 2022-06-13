@@ -1,6 +1,6 @@
-﻿using Classlibrery.DataAccessLayer.DTO_s;
-using Classlibrery.DataAccessLayer.IRepository;
-using Classlibrery.ErrorHandling;
+﻿using DataAccess.DataAccessLayer.DTO_s;
+using DataAccess.DataAccessLayer.IRepository;
+using DataAccess.ErrorHandling;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

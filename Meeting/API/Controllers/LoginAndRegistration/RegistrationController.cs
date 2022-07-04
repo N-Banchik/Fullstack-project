@@ -1,5 +1,5 @@
-﻿using DataAccess.DataAccessLayer.DTO_s;
-using DataAccess.DataAccessLayer.IRepository;
+﻿using DataAccess.Repository.IRepository;
+using DataAccess.DTOs;
 using DataAccess.ErrorHandling;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,7 @@ namespace API.Controllers.LoginAndRegistration
             {
                 UserDto user = await _unitOfWork._accountRepository.Register(registerUserDto);
                 await _unitOfWork.CompleteAsync();
-                return Ok();
+                return Ok(user);
             }
             catch (BadRequestExtention ex)
             {
@@ -43,7 +43,6 @@ namespace API.Controllers.LoginAndRegistration
 
         }
 
-        [HttpGet("get")]
-        public string get() { return "hello"; }
+        
     }
 }

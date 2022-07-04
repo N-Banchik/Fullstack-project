@@ -1,4 +1,5 @@
 ﻿using DataAccess.Data.Entities;
+using DataAccess.Data.Entities.Bridge_Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +21,14 @@ namespace DataAccess.Data
             builder.ApplyConfiguration(new HobbyConfiguration());
             builder.ApplyConfiguration(new EventConfiguration());
             builder.ApplyConfiguration(new GuideConfiguration());
-            builder.ApplyConfiguration(new PhotoConfiguration<Hobby>());
             builder.ApplyConfiguration(new PhotoConfiguration<Event>());
+            builder.ApplyConfiguration(new HobbyPhotoConfiguration());
             builder.ApplyConfiguration(new UserPhotoConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new PostConfiguration());
             builder.ApplyConfiguration(new UserHobbyConfiguration());
             builder.ApplyConfiguration(new UserEventConfiguration());
-            builder.ApplyConfiguration(new CategoryHobbyConfiguration());
+
         }
 
         public DbSet<Hobby>? Hobbies { get; set; }
@@ -38,7 +39,10 @@ namespace DataAccess.Data
         public DbSet<Photo<User>>? UserPhotos { get; set; }
         public DbSet<Category>? Categories { get; set; }
         public DbSet<Post>? Posts { get; set; }
-        
+        public DbSet<UserHobby>? UserHobbies { get; set; }
+        public DbSet<UserEvent>? UserEvents { get; set; }
+
+
 
 
 

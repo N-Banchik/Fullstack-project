@@ -1,4 +1,4 @@
-using API;
+using API.Startup;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -19,11 +19,11 @@ try
     //1. add roleManager 
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
     //await context.Database.MigrateAsync();
-    await roleManager.CreateAsync(new IdentityRole<int>("Member"));
-    await roleManager.CreateAsync(new IdentityRole<int>("Admin"));
-    await context.SaveChangesAsync();
-    context.Add(new Category { CategoryName = "Test", Description = "Test" });
-    context.SaveChanges();
+    //await roleManager.CreateAsync(new IdentityRole<int>("Member"));
+    //await roleManager.CreateAsync(new IdentityRole<int>("Admin"));
+    // await context.Categories.AddAsync(new Category { CategoryName = "Category test", Description = "test test" });
+   // await context.SaveChangesAsync();
+
 
     //await Seed.seedUsers(context);
 }
@@ -33,4 +33,4 @@ catch (Exception)
     throw;
 }
 
- app.SetupMiddleware().Run();
+app.SetupMiddleware().Run();

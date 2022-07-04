@@ -17,33 +17,10 @@ namespace DataAccess.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("DataAccess.Data.Entities.Bridge_Entities.CategoryHobby", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HobbyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("HobbyId");
-
-                    b.ToTable("CategoryHobby");
-                });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Bridge_Entities.UserEvent", b =>
                 {
@@ -68,7 +45,7 @@ namespace DataAccess.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserEvent");
+                    b.ToTable("UserEvents");
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Bridge_Entities.UserHobby", b =>
@@ -78,6 +55,9 @@ namespace DataAccess.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Following")
+                        .HasColumnType("bit");
 
                     b.Property<int>("HobbyId")
                         .HasColumnType("int");
@@ -91,7 +71,7 @@ namespace DataAccess.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserHobby");
+                    b.ToTable("UserHobbies");
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Category", b =>
@@ -123,6 +103,9 @@ namespace DataAccess.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool>("Canceled")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("EventCreated")
                         .HasColumnType("datetime2");
 
@@ -149,6 +132,9 @@ namespace DataAccess.Data.Migrations
 
                     b.Property<int>("HobbyId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("passed")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -204,6 +190,9 @@ namespace DataAccess.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -220,7 +209,12 @@ namespace DataAccess.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("photoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Hobbies");
                 });
@@ -298,7 +292,8 @@ namespace DataAccess.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EntityId");
+                    b.HasIndex("EntityId")
+                        .IsUnique();
 
                     b.HasIndex("UploaderID");
 
@@ -361,6 +356,9 @@ namespace DataAccess.Data.Migrations
                     b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreatorPhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateOfCreation")
                         .HasColumnType("datetime2");
 
@@ -372,10 +370,6 @@ namespace DataAccess.Data.Migrations
 
                     b.Property<int>("EventId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -621,25 +615,6 @@ namespace DataAccess.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DataAccess.Data.Entities.Bridge_Entities.CategoryHobby", b =>
-                {
-                    b.HasOne("DataAccess.Data.Entities.Category", "Category")
-                        .WithMany("Hobbies")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Data.Entities.Hobby", "Hobby")
-                        .WithMany("Categories")
-                        .HasForeignKey("HobbyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Hobby");
-                });
-
             modelBuilder.Entity("DataAccess.Data.Entities.Bridge_Entities.UserEvent", b =>
                 {
                     b.HasOne("DataAccess.Data.Entities.Event", "Event")
@@ -716,6 +691,17 @@ namespace DataAccess.Data.Migrations
                     b.Navigation("Hobby");
                 });
 
+            modelBuilder.Entity("DataAccess.Data.Entities.Hobby", b =>
+                {
+                    b.HasOne("DataAccess.Data.Entities.Category", "Category")
+                        .WithMany("Hobbies")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("DataAccess.Data.Entities.Photo<DataAccess.Data.Entities.Event>", b =>
                 {
                     b.HasOne("DataAccess.Data.Entities.Event", "Entity")
@@ -738,8 +724,8 @@ namespace DataAccess.Data.Migrations
             modelBuilder.Entity("DataAccess.Data.Entities.Photo<DataAccess.Data.Entities.Hobby>", b =>
                 {
                     b.HasOne("DataAccess.Data.Entities.Hobby", "Entity")
-                        .WithMany("Photos")
-                        .HasForeignKey("EntityId")
+                        .WithOne("Photo")
+                        .HasForeignKey("DataAccess.Data.Entities.Photo<DataAccess.Data.Entities.Hobby>", "EntityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -782,7 +768,7 @@ namespace DataAccess.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("DataAccess.Data.Entities.Event", "Event")
-                        .WithMany()
+                        .WithMany("Posts")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -852,18 +838,18 @@ namespace DataAccess.Data.Migrations
                 {
                     b.Navigation("Photos");
 
+                    b.Navigation("Posts");
+
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Hobby", b =>
                 {
-                    b.Navigation("Categories");
-
                     b.Navigation("Events");
 
                     b.Navigation("Guides");
 
-                    b.Navigation("Photos");
+                    b.Navigation("Photo");
 
                     b.Navigation("Users");
                 });

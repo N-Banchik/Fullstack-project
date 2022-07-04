@@ -39,7 +39,8 @@ namespace DataAccess.Data
                 builder.Property(h => h.KeyFeatures).IsRequired();
                 builder.HasMany(h => h.Events).WithOne(e => e.Hobby).HasForeignKey(e => e.HobbyId);
                 builder.HasMany(h => h.Guides).WithOne(e => e.Hobby).HasForeignKey(e => e.HobbyId);
-                builder.HasMany(h => h.Photos).WithOne(e => e.Entity).HasForeignKey(e => e.EntityId);
+                builder.HasOne(u => u.Photo).WithOne(ue => ue.Entity).HasForeignKey<Photo<Hobby>>(ue => ue.EntityId);
+                builder.HasOne(h => h.Category).WithMany(h => h.Hobbies).HasForeignKey(h => h.CategoryId);
 
 
             }
@@ -86,7 +87,19 @@ namespace DataAccess.Data
                 builder.HasOne(p => p.Uploader);
             }
         }
-        internal class UserPhotoConfiguration : IEntityTypeConfiguration<Photo<User>> 
+        internal class HobbyPhotoConfiguration : IEntityTypeConfiguration<Photo<Hobby>>
+        {
+            public void Configure(EntityTypeBuilder<Photo<Hobby>> builder)
+            {
+                builder.HasKey(p => p.Id);
+                builder.Property(p => p.Id).ValueGeneratedOnAdd();
+                builder.Property(p => p.PhotoUrl).IsRequired();
+                builder.Property(p => p.PublicId).IsRequired();
+                builder.HasOne(p => p.Entity).WithOne(u => u.Photo);
+                builder.HasOne(p => p.Uploader);
+            }
+        }
+        internal class UserPhotoConfiguration : IEntityTypeConfiguration<Photo<User>>
         {
             public void Configure(EntityTypeBuilder<Photo<User>> builder)
             {
@@ -97,7 +110,7 @@ namespace DataAccess.Data
                 builder.HasOne(p => p.Entity).WithOne(u => u.Photo);
                 builder.HasOne(p => p.Uploader);
             }
-        }        
+        }
         internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
         {
             public void Configure(EntityTypeBuilder<Category> builder)
@@ -114,7 +127,6 @@ namespace DataAccess.Data
             {
                 builder.HasKey(p => p.Id);
                 builder.Property(p => p.Id).ValueGeneratedOnAdd();
-                builder.Property(p => p.Title).IsRequired();
                 builder.Property(p => p.Content).IsRequired();
                 builder.Property(p => p.DateOfCreation).IsRequired();
                 builder.HasOne(p => p.Creator).WithMany(u => u.Posts).HasForeignKey(p => p.CreatorId);
@@ -140,16 +152,16 @@ namespace DataAccess.Data
                 builder.HasOne(uh => uh.Hobby).WithMany(h => h.Users).HasForeignKey(uh => uh.HobbyId);
             }
         }
-        internal class CategoryHobbyConfiguration : IEntityTypeConfiguration<CategoryHobby>
-        {
-            public void Configure(EntityTypeBuilder<CategoryHobby> builder)
-            {
-                builder.HasKey(ch => ch.Id);
-                builder.Property(ch => ch.Id).ValueGeneratedOnAdd();
-                builder.HasOne(ch => ch.Category).WithMany(c => c.Hobbies).HasForeignKey(ch => ch.CategoryId);
-                builder.HasOne(ch => ch.Hobby).WithMany(h => h.Categories).HasForeignKey(ch => ch.HobbyId);
-            }
-        }
+        //internal class CategoryHobbyConfiguration : IEntityTypeConfiguration<CategoryHobby>
+        //{
+        //    public void Configure(EntityTypeBuilder<CategoryHobby> builder)
+        //    {
+        //        builder.HasKey(ch => ch.Id);
+        //        builder.Property(ch => ch.Id).ValueGeneratedOnAdd();
+        //        builder.HasOne(ch => ch.Category).WithMany(c => c.Hobbies).HasForeignKey(ch => ch.CategoryId);
+        //        builder.HasOne(ch => ch.Hobby).WithMany(h => h.Categories).HasForeignKey(ch => ch.HobbyId);
+        //    }
+        //}
 
 
 

@@ -8,7 +8,7 @@ namespace DataAccess.Data.Entities
 
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
-        public string FullName { get { return FullName; } set { FullName = $"{FirstName} {LastName}"; } }
+        public string FullName { get; set; } = string.Empty;
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateModified { get; set; } = DateTime.Now;
         public DateTime DateOfBirth { get; set; }

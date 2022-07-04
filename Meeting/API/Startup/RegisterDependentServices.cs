@@ -17,8 +17,8 @@ public static class RegisterDependentServices
         builder.Services.AddCustomizedServices(builder.Configuration);
         //Add Identity Platform services
         builder.Services.AddIdentityServices(builder.Configuration);
-       
-        
+
+
 
 
 

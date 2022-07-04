@@ -12,7 +12,7 @@ namespace DataAccess.Data.Entities
         public int Id { get; set; }
         public string? CategoryName { get; set; }
         public string? Description { get; set; }
-        public ICollection<CategoryHobby>? Hobbies { get; set; }
+        public ICollection<Hobby>? Hobbies { get; set; }
 
     }
 }

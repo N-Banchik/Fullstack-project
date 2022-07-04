@@ -20,6 +20,7 @@ namespace API.ApplicationStartupExtentions
             .AddRoles<IdentityRole<int>>()
             .AddRoleManager<RoleManager<IdentityRole<int>>>()
             .AddSignInManager<SignInManager<User>>()
+            .AddSignInManager<SignInManager<User>>()
             .AddRoleValidator<RoleValidator<IdentityRole<int>>>()
             .AddEntityFrameworkStores<DataContext>();
            

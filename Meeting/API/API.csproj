@@ -33,6 +33,7 @@
 	<ItemGroup>
 		<Folder Include="Controllers\Events\" />
 		<Folder Include="Controllers\Members\" />
+		<Folder Include="Controllers\Admin\" />
 	</ItemGroup>
 
 </Project>

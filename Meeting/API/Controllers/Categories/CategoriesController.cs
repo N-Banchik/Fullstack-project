@@ -4,12 +4,13 @@ using DataAccess.DTOs.Creation_Dtos;
 using DataAccess.DTOs.UpdateDtos;
 using DataAccess.ErrorHandling;
 using DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Categories
 {
-
+    [Authorize]
     public class CategoriesController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;

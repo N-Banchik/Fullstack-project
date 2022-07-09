@@ -15,17 +15,13 @@ IServiceProvider services = scope.ServiceProvider;
 try
 {
     DataContext context = services.GetRequiredService<DataContext>();
-    var userManager = services.GetRequiredService<UserManager<User>>();
+    UserManager<User>? userManager = services.GetRequiredService<UserManager<User>>();
     //1. add roleManager 
-    var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
-    //await context.Database.MigrateAsync();
-    //await roleManager.CreateAsync(new IdentityRole<int>("Member"));
-    //await roleManager.CreateAsync(new IdentityRole<int>("Admin"));
-    // await context.Categories.AddAsync(new Category { CategoryName = "Category test", Description = "test test" });
-   // await context.SaveChangesAsync();
+    RoleManager<IdentityRole<int>>? roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
 
 
-    //await Seed.seedUsers(context);
+    SeedData seed = new SeedData(context, userManager, roleManager);
+   await seed.Seed();
 }
 catch (Exception)
 {

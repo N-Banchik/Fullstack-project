@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>Register</mat-card-title>
+  <mat-card-title>Create Event</mat-card-title>
   <mat-card-content>
     <form [formGroup]="Form" (ngSubmit)="createEvent()">
       <p>
@@ -35,29 +35,15 @@
 
       <p>
         <mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              [ngxMatDatetimePicker]="picker"
-              placeholder="Choose a date"
-              formControlName="eventDate"
-              min="01/01/1990"
-            />
-            <mat-datepicker-toggle matSuffix></mat-datepicker-toggle>
-            <ngx-mat-datetime-picker
-              #picker
-              [showSpinners]="true"
-              [showSeconds]="false"
-              color="accent"
-              [enableMeridian]="true"
-            >
-              <ng-template>
-                <mat-icon>star</mat-icon>
-                <span>OK</span>
-              </ng-template>
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="eventDate"
+                 >
+            <mat-datepicker-toggle matSuffix ></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
+                 
+                
+               >
             </ngx-mat-datetime-picker>
-          </mat-form-field>
-        </mat-form-field>
+         </mat-form-field>
       </p>
       
 

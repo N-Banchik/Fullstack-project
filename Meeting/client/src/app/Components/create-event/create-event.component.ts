@@ -33,7 +33,9 @@ export class CreateEventComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initializeForm();
+  }
 
   handleAddressChange(address: any) {
     this.eventLocation = this.addressService.GetAddressToEvent(address);

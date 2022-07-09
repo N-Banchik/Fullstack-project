@@ -16,10 +16,10 @@ namespace DataAccess.DTOs
         public string? City { get; set; }
 
         public PhotoDto? Photo { get; set; }
-        public ICollection<HobbyDto>? Hobbies { get; set; }
-        public ICollection<EventDto>? EventsAttend { get; set; }
-        public ICollection<GuideDto>? Guides { get; set; }
-        public ICollection<EventDto>? EventsCreated { get; set; }
-        public ICollection<PostDto>? Posts { get; set; }
+        //public ICollection<HobbyDto>? Hobbies { get; set; }
+        //public ICollection<EventDto>? EventsAttend { get; set; }
+        //public ICollection<GuideDto>? Guides { get; set; }
+        //public ICollection<EventDto>? EventsCreated { get; set; }
+        //public ICollection<PostDto>? Posts { get; set; }
     }
 }

@@ -63,7 +63,7 @@ namespace API.Controllers.Categories
 
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> AddCategory(CategoryCreationDto creationDto)
         {
@@ -89,7 +89,7 @@ namespace API.Controllers.Categories
 
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateCategory(CategoryUpdateDto updateDto)
         {

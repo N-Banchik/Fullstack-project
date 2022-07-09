@@ -17,6 +17,7 @@ namespace API.HelpersClasses
         public static int GetUserId(this ClaimsPrincipal user)
         {
 
+
             string? userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId != null)
                 return int.Parse(userId);

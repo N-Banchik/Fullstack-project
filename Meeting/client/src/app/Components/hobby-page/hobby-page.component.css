@@ -1,0 +1,15 @@
+
+.member{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100px;
+}
+
+.container{
+    height: 200x;
+}
+.topBox{
+    height: 350px;
+}

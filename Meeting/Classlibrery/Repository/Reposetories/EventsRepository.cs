@@ -128,12 +128,14 @@ namespace DataAccess.Repository.Reposetories
 
         public async Task<EventDto> GetEventById(int eventId)
         {
-            Event? eventToReturn = await base._dbSet.Where(e => e.Id == eventId).Include(p => p.Photos).Include(p => p.Posts!.Where(p => p.Deleted == false)).FirstOrDefaultAsync();
+            Event? eventToReturn = await base._dbSet.Where(e => e.Id == eventId).Include(p => p.Photos).FirstOrDefaultAsync();
             if (eventToReturn == null)
             {
                 throw new BadRequestExtention(ErrorMessages.EventNotFound);
             };
             EventDto eventDto = _mapper.Map<EventDto>(eventToReturn);
+            eventDto.Posts = await _postSet.Where(p => p.EventId == eventId).ProjectTo<PostDto>(_mapper.ConfigurationProvider).ToListAsync();
+            eventDto.Creator = await _userEvents.Where(x => x.UserId == eventToReturn.EventCreatorId).Select(x => _mapper.Map<MemberDto>(x.User)).FirstOrDefaultAsync();
             eventDto.Users = await GetMembersForEvent(eventToReturn.Id);
 
             return _mapper.Map<EventDto>(eventDto); ;
@@ -176,7 +178,7 @@ namespace DataAccess.Repository.Reposetories
         public async Task<IEnumerable<PostDto>> GetPostsForEvent(int EventID)
         {
             List<PostDto> posts = new();
-            posts = await _postSet.Where(p => p.EventId == EventID && p.Deleted == false).Include(e => e.Event).Include(p => p.Creator).Select(p => _mapper.Map<PostDto>(p)).ToListAsync();
+            posts = await _postSet.Where(p => p.EventId == EventID && p.Deleted == false).Include(p => p.Creator).Select(p => _mapper.Map<PostDto>(p)).OrderBy(x=>x.DateOfCreation).ToListAsync();
             return posts;
 
         }
@@ -201,14 +203,14 @@ namespace DataAccess.Repository.Reposetories
 
         public async Task<List<EventMemberDto>> GetMembersForEvent(int eventId)
         {
-            return await _userEvents.Where(e => e.EventId == eventId).Include(u => u.User).ThenInclude(c => c!.Photo).Select(u => _mapper.Map<EventMemberDto>(u)).ToListAsync();
+            return await _userEvents.Where(e => e.EventId == eventId&& e.Arriving==true).Include(u => u.User).ThenInclude(c => c!.Photo).Select(u => _mapper.Map<EventMemberDto>(u)).ToListAsync();
         }
 
         public async Task RegisterToEvent(int eventId, int userId)
         {
-            if (await _userEvents.AnyAsync(e => e.EventId == eventId && e.UserId == userId))
+            if (await _userEvents.AnyAsync(e => e.EventId == eventId && e.UserId == userId&&e.Arriving==false))
             {
-                throw new BadRequestExtention(ErrorMessages.AlreadyRegistered);
+                await this.ChangeAttending(eventId,userId);
             }
             await _userEvents.AddAsync(new UserEvent() { EventId = eventId, UserId = userId });
         }

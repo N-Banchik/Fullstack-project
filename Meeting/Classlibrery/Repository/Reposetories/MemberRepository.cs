@@ -6,6 +6,7 @@ using DataAccess.DTOs.UpdateDtos;
 using DataAccess.ErrorHandling;
 using DataAccess.Repository.IRepository;
 using DataAccess.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository.Reposetories
 {
+    
     public class MemberRepository : BaseRepository<User, MemberDto>, IMemberRepository
     {
         private readonly UserManager<User> _userManager;
@@ -32,7 +34,15 @@ namespace DataAccess.Repository.Reposetories
             this._photos = dbContext.Set<Photo<User>>();
         }
 
-
+        public async Task<MemberDto> GetMember(int id)
+        {
+            User? user = await _userManager.Users.Include(p => p.Photo).FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null)
+            {
+                throw new BadRequestExtention(ErrorMessages.UserNotFound);
+            }
+            return _mapper.Map<MemberDto>(user);
+        }
         public async Task UpdateLocation(MemberUpdateDto updateDto, int userId)
         {
             User user = await _userManager.FindByIdAsync(userId.ToString());

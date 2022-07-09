@@ -19,9 +19,10 @@ export class JWTInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     let currentUser: User = {
       token: '',
+      id: 0,
       username: '',
       photoUrl: '',
-     roles: [],
+      roles: [],
     };
     this.account.currentUser$.pipe(take(1)).subscribe((user: User | null) => {
       if (user) currentUser = user;
@@ -29,10 +30,14 @@ export class JWTInterceptor implements HttpInterceptor {
     if (currentUser.token) {
       request = request.clone({
         setHeaders: {
+          
           Authorization: `Bearer ${currentUser.token}`,
         },
+        
       });
     }
+    
+    
     return next.handle(request);
   }
 }

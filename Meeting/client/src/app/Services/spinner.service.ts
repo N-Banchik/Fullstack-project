@@ -10,16 +10,7 @@ export class SpinnerService {
 
   busy() {
     this.busyRequestCount++;
-    this.Spinner.show(
-      undefined,
-      {
-        // there are about 50 spinner types
-        type: 'ball-clip-rotate-multiple',
-        color: '#FF0000',
-        bdColor: 'rgba(0, 0, 0, 0.8)',
-        fullScreen: true,
-      }
-    );
+    this.Spinner.show();
   }
   idle() {
     this.busyRequestCount--;

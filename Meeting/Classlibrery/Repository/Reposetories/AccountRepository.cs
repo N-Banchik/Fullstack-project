@@ -66,7 +66,8 @@ namespace DataAccess.Repository.Reposetories
                 return new UserDto
                 {
                     Username = user.UserName,
-                    Token = token
+                    Token = token,
+                    Id=user.Id
                 };
 
 

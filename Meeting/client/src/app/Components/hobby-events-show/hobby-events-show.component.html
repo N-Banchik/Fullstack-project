@@ -1,0 +1,21 @@
+<cdk-virtual-scroll-viewport itemSize="100" class="container">
+  <div *cdkVirtualFor="let event of eventView" class="event">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ event.eventName | titlecase }} ,
+          {{ event.eventDate | date: "mediumDate" }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ event.eventLocation | titlecase }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>'{{ event.eventDescription | slice: 0:25 }}'...</p>
+      <mat-action-row>
+        <button mat-button color="primary" routerLink="event/{{ event.id }}">
+          See Details >
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </div>
+</cdk-virtual-scroll-viewport>

@@ -22,8 +22,8 @@ namespace DataAccess.Services
         public async Task<string> CreateTokenAsync(User user)
         {
             List<Claim> claims = new List<Claim> {
-              new Claim(JwtRegisteredClaimNames.NameId, user.UserName),
-              new Claim(JwtRegisteredClaimNames.Email, user.Email)
+              new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
             };
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
             claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
@@ -43,8 +43,8 @@ namespace DataAccess.Services
         public string CreateToken(User user,string role)
         {
             List<Claim> claims = new List<Claim> {
-              new Claim(JwtRegisteredClaimNames.NameId, user.UserName),
-              new Claim(JwtRegisteredClaimNames.Email, user.Email)
+             new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
             };
             claims.Add(new Claim(ClaimTypes.Role, role));
             SigningCredentials creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

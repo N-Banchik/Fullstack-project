@@ -1,0 +1,80 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-card *ngIf="event != null">
+    <mat-card-header>
+      <mat-card-title>{{ event.eventTitle }}</mat-card-title>
+
+      <mat-card-subtitle
+        >{{ event.eventDate | date: "mediumDate" }} ,{{
+          event.eventDate | date: "mediumTime"
+        }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Created by : {{ event.creator.userName | titlecase }} on
+        {{ event.eventCreated | date }}
+      </p>
+      <mat-tab-group
+        mat-align-tabs="start"
+        backgroundColor="primary"
+        color="accent"
+      >
+        <mat-tab label="Event Description">{{
+          event.eventDescription
+        }}</mat-tab>
+        <mat-tab label="Where?">location</mat-tab>
+        <mat-tab label="Event Rules">{{ event.eventRules }}</mat-tab>
+        <mat-tab label="How is Coming?">
+          <div class="container">
+            <div
+              *ngFor="let member of members | async as Member"
+              class="member"
+            >
+              <mat-card>{{ member.userName }}</mat-card>
+            </div>
+          </div></mat-tab
+        >
+        <mat-tab label="How about some messages"
+          ><app-post-show [posts]="event.posts"></app-post-show
+        ></mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addPost()">
+        Add Post
+      </button>
+      <button
+        *ngIf="!arriving"
+        mat-raised-button
+        color="primary"
+        (click)="joinEvent()"
+      >
+        Join Event
+      </button>
+
+      <button
+        *ngIf="arriving"
+        mat-raised-button
+        color="accent"
+        (click)="leaveEvent()"
+      >
+        leave Event
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div *ngIf="post" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card>
+    <form [formGroup]="form" (ngSubmit)="submitPost()">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="What's on your mind?"
+          formControlName="content"
+          required
+        />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Post</button>
+    </form>
+  </mat-card>
+</div>

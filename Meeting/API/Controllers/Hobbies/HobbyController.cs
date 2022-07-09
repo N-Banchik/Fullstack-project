@@ -297,5 +297,29 @@ namespace API.Controllers.Hobbies
             }
         }
 
+        [HttpGet("{hobbyId}/members")]
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetHobbyMembers(int hobbyId)
+        {
+            try
+            {
+                IEnumerable<MemberDto> users = await _unitOfWork._hobbyRepository.GetHobbyUsers(hobbyId);
+                return Ok(users);
+            }
+            catch (BadRequestExtention ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (UnauthorizedExtention ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+
+            }
+        }
+
     }
 }

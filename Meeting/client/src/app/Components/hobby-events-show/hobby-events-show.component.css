@@ -1,0 +1,12 @@
+.event{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    box-sizing: border-box;
+    height: 170px;
+}
+
+.container{
+    height: 400px;
+    width: 600px;
+}

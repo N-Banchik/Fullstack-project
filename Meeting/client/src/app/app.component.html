@@ -1,10 +1,11 @@
 
   <app-nav-bar (ToggleSidebarEvent)="(ToggleSidebar())"></app-nav-bar>
 
-<mat-sidenav-container  >
-  <mat-sidenav mode="side" [opened]="sidebarShow"> <app-side-bar></app-side-bar> </mat-sidenav>
+<mat-sidenav-container fxFlexFill >
+  <mat-sidenav fxLayout="column" mode="over" [opened]="sidebarShow"> <app-side-bar></app-side-bar> </mat-sidenav>
  
-  <mat-sidenav-content  >
+  <mat-sidenav-content fxFlexFill >
+    <ngx-spinner type="triangle-skew-spin"><p> Loading... </p></ngx-spinner>
     <router-outlet> </router-outlet>
 </mat-sidenav-content>
 </mat-sidenav-container>

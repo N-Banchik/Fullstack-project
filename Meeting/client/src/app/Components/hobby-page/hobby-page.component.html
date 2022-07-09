@@ -1,0 +1,31 @@
+<div class="mat-display-3">Welcome To: {{ hobby.hobbyName }}!</div>
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+  <div class="topBox">
+    
+    
+        <button mat-raised-button routerLink="event/create" color="accent"> Create Event!</button>
+        <button mat-raised-button color="accent">Create Guide!</button>
+      
+   
+    <mat-tab-group mat-align-tabs="start" backgroundColor="primary" color="accent">
+      <mat-tab label="Description">{{ hobby.description }}</mat-tab>
+      <mat-tab label="Rules">{{ hobby.rules }}</mat-tab>
+      <mat-tab label="Members">
+        <div  class="container">
+          <div *ngFor="let member of members" class="member">
+            <mat-card>{{member.userName}}</mat-card>
+          </div>
+        </div></mat-tab
+      >
+    </mat-tab-group>
+  </div>
+  <div>
+    <p class="mat-display-2">Events:</p>
+    <app-hobby-events-show [eventView]="hobby.events"></app-hobby-events-show>
+  </div>
+
+  <div>
+    <p class="mat-display-2">Guides:</p>
+    <app-hobby-guide-view [guideView]="hobby.guides"></app-hobby-guide-view>
+  </div>
+</div>

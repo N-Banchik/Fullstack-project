@@ -14,6 +14,7 @@ namespace DataAccess.Repository.IRepository
 
         Task UpdateLocation(MemberUpdateDto updateDto, int userId);
         Task<PhotoDto> AddPhoto(IFormFile file, int userId);
+        Task<MemberDto> GetMember(int userId);
 
 
     }

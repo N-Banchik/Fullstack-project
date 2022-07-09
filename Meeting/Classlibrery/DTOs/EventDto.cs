@@ -19,6 +19,7 @@ namespace DataAccess.DTOs
         public bool Canceled { get; set; }
         public bool passed { get; set; }
         public string? MainPhotoUrl { get; set; }
+        public MemberDto? Creator { get; set; }
         public ICollection<Photo<Event>>? Photos { get; set; }
         public ICollection<EventMemberDto>?Users { get; set; }
         public ICollection<PostDto>? Posts { get; set; }

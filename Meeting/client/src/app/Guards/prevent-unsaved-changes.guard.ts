@@ -10,7 +10,7 @@ export class PreventUnsavedChangesGuard<component extends CanEdit> implements Ca
   canDeactivate(
     component: component,
   ): boolean {
-    if(component.editForm.dirty) {
+    if(component.Form.dirty) {
       
       return confirm("Are you sure you want to continue?\n, any unsaved changed will be lost ")
     }

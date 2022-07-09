@@ -116,8 +116,8 @@ namespace API.Controllers.Guides
 
             }
         }
-        [HttpPut("{Id}")]
-        public async Task<ActionResult> UpdateGuide(int Id, GuideUpdateDto updateDto)
+        [HttpPut]
+        public async Task<ActionResult> UpdateGuide( GuideUpdateDto updateDto)
         {
             try
             {

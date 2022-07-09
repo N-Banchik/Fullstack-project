@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { CanEdit } from 'src/app/Interfaces/can-edit';
 import { AccountService } from 'src/app/Services/account.service';
 import { GoogleAddressService } from 'src/app/Services/google-address.service';
 
@@ -10,9 +11,9 @@ import { GoogleAddressService } from 'src/app/Services/google-address.service';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit,CanEdit {
   @ViewChild("placesRef") placesRef : GooglePlaceDirective | undefined;
-  public registrationForm!: FormGroup
+  public Form!: FormGroup
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
@@ -23,7 +24,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {this.InitializeForm();}
 
  InitializeForm() {
-  this.registrationForm=this.formBuilder.group({
+  this.Form=this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     country: ['', Validators.required],
@@ -31,15 +32,15 @@ export class RegistrationComponent implements OnInit {
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     userName: ['', Validators.required],
+    dateOfBirth: ['', Validators.required],
   });
  }
 
   Register() {
     
-    this.accountService.register(this.registrationForm.value).subscribe(
+    this.accountService.register(this.Form.value).subscribe(
       (data) => {
-        console.log('response', data);
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/hobbies');
       },
       (error) => {
         console.log('error', error);
@@ -48,11 +49,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   handleAddressChange(address: any) {
-    console.log('Address change: ', address);
     let addressFromService=this.addressService.GetAddressToString(address);
-    this.registrationForm.controls["city"].setValue(addressFromService.city);
-    this.registrationForm.controls["country"].setValue(addressFromService.country);
+    this.Form.controls["city"].setValue(addressFromService.city);
+    this.Form.controls["country"].setValue(addressFromService.country);
   }
 
 }
+
 

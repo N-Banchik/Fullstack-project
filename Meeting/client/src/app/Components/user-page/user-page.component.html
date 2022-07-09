@@ -1,0 +1,95 @@
+<mat-card class="mat-elevation-z4">
+  <mat-card-header>
+    <mat-card-title>Hello! {{ member.userName }}</mat-card-title>
+    <div>
+      <img mat-card-image />
+    </div>
+  </mat-card-header>
+
+  <mat-card-content >
+    <div>Birthday: {{ member.dateOfBirth | date }}</div>
+    <div>City: {{ member.city }}   </div>
+    <div>Country: {{ member.country }}  </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="openPassword()">Update Password</button>
+    <button (click)="openUpdateLocation()" mat-raised-button>update location</button>
+    <button mat-raised-button (click)="openPhoto()">update Photos</button>
+  </mat-card-actions>
+<mat-card-footer *ngIf="location">
+    <form [formGroup]="Form" (ngSubmit)="updateLocation()">
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              #placesRef="ngx-places"
+              autocomplete="false"
+              ngx-google-places-autocomplete
+              (onAddressChange)="handleAddressChange($event)"
+              matInput
+              placeholder="City"
+              formControlName="city"
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Country"
+              formControlName="country"
+            />
+          </mat-form-field>
+        </p>
+  
+        <div class="button">
+          <button [disabled]="!Form.valid" type="submit" mat-button>
+            Update
+          </button>
+        </div>
+      </form>
+</mat-card-footer>
+<mat-card-footer  *ngIf="password">
+    <form [formGroup]="Form" (ngSubmit)="updatePassword()">
+        <div class="container">
+        <p>
+          <mat-form-field>
+            <input
+            type="password"
+            autocomplete="true"
+            matInput
+            placeholder="Current Password"
+            formControlName="currentPassword"
+          />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input
+            type="password"
+            autocomplete="true"
+            matInput
+            placeholder="New Password"
+            formControlName="newPassword"
+          />
+          </mat-form-field>
+        </p>
+  
+        <div class="button">
+          <button [disabled]="!Form.valid" type="submit" mat-button>
+            Update
+          </button>
+        </div>
+    </div>
+      </form>
+
+</mat-card-footer>
+</mat-card>
+
+<mat-card *ngIf="photo" class="mat-elevation-z4"> 
+<mat-card-title> UpdatePhoto</mat-card-title>
+<mat-card-content>
+  <app-photo-upload [member]="member"></app-photo-upload>
+</mat-card-content>
+</mat-card>

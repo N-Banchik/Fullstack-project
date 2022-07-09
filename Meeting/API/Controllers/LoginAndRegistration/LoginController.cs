@@ -3,6 +3,7 @@ using DataAccess.DTOs;
 using DataAccess.ErrorHandling;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using API.HelpersClasses;
 
 namespace API.Controllers.LoginAndRegistration
 {
@@ -21,6 +22,7 @@ namespace API.Controllers.LoginAndRegistration
         {
             try
             {
+               
                 UserDto user = await _unitOfWork._accountRepository.Login(loginUserDto);
                 await _unitOfWork.CompleteAsync();
                 return Ok(user);

@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from './Models/user';
 import { AccountService } from './Services/account.service';
 
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
   sidebarShow = false;
 
   
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService,
+    private route:Router) {}
   ngOnInit(): void {
     this.setCurrentUser();
   }
@@ -21,7 +23,12 @@ export class AppComponent implements OnInit {
   setCurrentUser() {
     const userFromLS: any = localStorage.getItem('user');
     const user: User = JSON.parse(userFromLS);
-    this.accountService.setCurrentUser(user);
+    if (user) {
+      this.accountService.setCurrentUser(user);
+      this.route.navigateByUrl('/hobbies');
+    }
+
+    
   }
   ToggleSidebar() {
     this.sidebarShow = !this.sidebarShow;

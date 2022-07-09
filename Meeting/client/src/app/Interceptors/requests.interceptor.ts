@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { finalize, Observable } from 'rxjs';
+import { finalize,delay, Observable } from 'rxjs';
 import { SpinnerService } from '../Services/spinner.service';
 
 @Injectable()
@@ -15,6 +15,6 @@ export class RequestsInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.spinnerService.busy();
-    return next.handle(request).pipe(finalize(() => this.spinnerService.idle()));
+    return next.handle(request).pipe(delay(1000) ,finalize(() => this.spinnerService.idle()));
   }
 }

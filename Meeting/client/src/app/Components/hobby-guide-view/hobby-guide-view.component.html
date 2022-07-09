@@ -1,0 +1,20 @@
+<cdk-virtual-scroll-viewport itemSize="100" class="container">
+  <div *cdkVirtualFor="let guide of guideView" class="guide">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ guide.title | titlecase }} ,
+          {{ guide.creationDate | date: "mediumDate" }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ guide.creatorUserName | titlecase }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-action-row>
+        <button mat-button color="primary" routerLink="guides/{{ guide.id }}">
+          See Details >
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </div>
+</cdk-virtual-scroll-viewport>

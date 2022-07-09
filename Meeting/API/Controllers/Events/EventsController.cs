@@ -74,7 +74,7 @@ namespace API.Controllers.Events
             }
         }
 
-        [HttpPut("Cancel/{eventId}")]
+        [HttpDelete("Cancel/{eventId}")]
         public async Task<ActionResult> CancelEvent(int eventId)
         {
             try
@@ -222,7 +222,7 @@ namespace API.Controllers.Events
         }
 
         [HttpGet("Creator")]
-        public async Task<ActionResult> GetEventsCreatedByUser([FromQuery] EventSearchParams searchParams, int userId)
+        public async Task<ActionResult> GetEventsCreatedByUser([FromQuery] EventSearchParams searchParams)
         {
             try
             {
@@ -246,7 +246,7 @@ namespace API.Controllers.Events
             }
         }
 
-        [HttpGet("Members")]
+        [HttpGet("{eventId}/Members")]
         public async Task<ActionResult> GetMembersForEvent(int eventId)
         {
             try

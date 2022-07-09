@@ -37,4 +37,10 @@ export class GoogleAddressService {
         ?.long_name;
     return this.addressToString;
   }
+
+  GetAddressToEvent(address: Address) {
+    return address.formatted_address;
+  }
+
+  
 }

@@ -3,6 +3,7 @@ import { ReplaySubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../Models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class AccountService {
   private currentUserSource$ = new ReplaySubject<User | null>(1);
   currentUser$ = this.currentUserSource$.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private route:Router) {}
 
   login(model: any) {
     return this.http.post<User>(this.baseUrl + 'Login', model).pipe(
@@ -30,6 +32,7 @@ export class AccountService {
       map((user: User) => {
         if (user) {
           this.setCurrentUser(user);
+          this.route.navigateByUrl('/hobbies');
         }
         return user;
       })

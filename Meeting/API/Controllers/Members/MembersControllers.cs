@@ -3,12 +3,13 @@ using DataAccess.DTOs;
 using DataAccess.DTOs.UpdateDtos;
 using DataAccess.ErrorHandling;
 using DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Members
 {
-
+    [Authorize]
     public class MembersController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -22,7 +23,9 @@ namespace API.Controllers.Members
         {
             try
             {
+
                 int userId = User.GetUserId();
+
                 await _unitOfWork._memberRepository.UpdateLocation(updateDto, userId);
                 await _unitOfWork.CompleteAsync();
                 return Ok();
@@ -42,6 +45,31 @@ namespace API.Controllers.Members
 
             }
         }
+        [HttpGet]
+        public async Task<ActionResult> GetMember()
+        {
+            try
+            {
+                int userId = User.GetUserId();
+                MemberDto member = await _unitOfWork._memberRepository.GetMember(userId);
+                return Ok(member);
+            }
+            catch (BadRequestExtention ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (UnauthorizedExtention ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+
+            }
+        }
+
 
         [HttpPost("Photo")]
         public async Task<ActionResult> AddPhoto(IFormFile file)

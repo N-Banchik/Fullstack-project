@@ -14,6 +14,6 @@ namespace DataAccess.DTOs.UpdateDtos
         public string? EventRules { get; set; }
         public DateTime EventDate { get; set; }
         public string? EventLocation { get; set; }
-        public bool Cenceld { get; set; }
+        public bool Canceled { get; set; }
     }
 }

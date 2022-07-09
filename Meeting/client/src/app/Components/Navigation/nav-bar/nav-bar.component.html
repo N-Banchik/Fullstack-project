@@ -2,5 +2,9 @@
   <button color="accent" mat-icon-button (click)="ToggleSidebar()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Hobbyist</span>
+  <a routerLink="/hobbies">Hobbyist</a>
+  <button mat-icon-button>
+      <mat-icon *ngIf="currentUser$ | async as user" routerLink="/hobbies/{{ user.username}}" color="white">account_circle</mat-icon>
+        </button>
+    <button mat-raised-button (click)="logout()"> Log out</button>
 </mat-toolbar>

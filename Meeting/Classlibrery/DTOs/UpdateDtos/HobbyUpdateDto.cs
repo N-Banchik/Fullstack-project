@@ -12,6 +12,6 @@ namespace DataAccess.DTOs.UpdateDtos
         public string? HobbyName { get; set; }
         public string? Description { get; set; }
         public string? Rules { get; set; }
-        public string? KeyFitures { get; set; }
+        public string? keyFeatures { get; set; }
     }
 }

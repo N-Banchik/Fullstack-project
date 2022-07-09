@@ -1,0 +1,12 @@
+.my-drop-zone,mat-card-content {
+    border: dotted 4px lightgray;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+  }
+  .nv-file-over {
+    border: dotted 4px red;
+  } /* Default class applied to drop zones on over */
+  .another-file-over-class {
+    border: dotted 3px green;
+  }

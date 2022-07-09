@@ -40,7 +40,7 @@ namespace DataAccess.Services
 
 
             CreateMap<Event, EventDto>().ForMember(destination => destination.MainPhotoUrl,
-             opt => { opt.MapFrom(src => src.Photos!.FirstOrDefault(p => p.IsMain)!.PhotoUrl); });
+             opt => { opt.MapFrom(src => src.Photos!.FirstOrDefault(p => p.IsMain)!.PhotoUrl); }).MaxDepth(1);
             CreateMap<Event, EventViewDto>().ForMember(destination => destination.MainPhotoUrl,
              opt => { opt.MapFrom(src => src.Photos!.FirstOrDefault(p => p.IsMain)!.PhotoUrl); });
             CreateMap<EventCreationDto, Event>();

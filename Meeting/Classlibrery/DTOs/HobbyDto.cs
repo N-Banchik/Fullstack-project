@@ -1,10 +1,4 @@
-﻿using DataAccess.Data.Entities;
-using DataAccess.DTOs.ViewDtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccess.DTOs.ViewDtos;
 
 namespace DataAccess.DTOs
 {

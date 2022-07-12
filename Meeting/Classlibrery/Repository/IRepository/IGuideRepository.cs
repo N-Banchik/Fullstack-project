@@ -4,11 +4,6 @@ using DataAccess.DTOs.UpdateDtos;
 using DataAccess.DTOs.ViewDtos;
 using DataAccess.SearchParams;
 using DataAccess.Services.Pagination;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Repository.IRepository
 {

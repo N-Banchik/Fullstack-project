@@ -1,9 +1,7 @@
 ﻿using DataAccess.Repository.IRepository;
 using DataAccess.DTOs;
 using DataAccess.ErrorHandling;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using API.HelpersClasses;
 
 namespace API.Controllers.LoginAndRegistration
 {

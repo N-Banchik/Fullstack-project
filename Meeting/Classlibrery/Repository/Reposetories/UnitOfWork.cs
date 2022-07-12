@@ -4,7 +4,6 @@ using DataAccess.Data.Entities;
 using DataAccess.Repository.IRepository;
 using DataAccess.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repository.Reposetories
 {

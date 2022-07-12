@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccess.Data.Entities.Bridge_Entities
+﻿namespace DataAccess.Data.Entities.Bridge_Entities
 {
     public class UserEvent
     {

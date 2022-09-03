@@ -138,13 +138,13 @@ namespace DataAccess.Repository.Reposetories
             eventDto.Creator = await _userEvents.Where(x => x.UserId == eventToReturn.EventCreatorId).Select(x => _mapper.Map<MemberDto>(x.User)).FirstOrDefaultAsync();
             eventDto.Users = await GetMembersForEvent(eventToReturn.Id);
 
-            return _mapper.Map<EventDto>(eventDto); ;
+            return eventDto;
         }
         public async Task<PaginatedList<EventViewDto>> GetEventsForMember(EventSearchParams searchParams)
         {
             IQueryable<Event>? query = _userEvents.AsQueryable()
             .Where(e => e.UserId == searchParams.UserId)
-            .Include(e => e.Event).ThenInclude(x => x!.Photos).Select(e => e.Event!).OrderBy(e => e.EventDate);
+            .Include(e => e.Event).Where(e=>e.Arriving==true||e.Event.EventCreatorId==searchParams.UserId).Select(e => e.Event!).OrderBy(e => e.EventDate);
 
 
             return await PaginatedList<EventViewDto>
@@ -211,8 +211,9 @@ namespace DataAccess.Repository.Reposetories
             if (await _userEvents.AnyAsync(e => e.EventId == eventId && e.UserId == userId&&e.Arriving==false))
             {
                 await this.ChangeAttending(eventId,userId);
+                return;
             }
-            await _userEvents.AddAsync(new UserEvent() { EventId = eventId, UserId = userId });
+            await _userEvents.AddAsync(new UserEvent() { EventId = eventId, UserId = userId,Arriving=true });
         }
 
         public async Task<bool> ChangeAttending(int eventId, int userId)

@@ -10,6 +10,7 @@
             placeholder="First Name"
             formControlName="firstName"
           />
+          <mat-hint>Please enter Your First Name.</mat-hint>
         </mat-form-field>
       </p>
       <p>
@@ -20,6 +21,7 @@
             placeholder="Last Name"
             formControlName="lastName"
           />
+          <mat-hint>Please enter Your Last Name.</mat-hint>
         </mat-form-field>
       </p>
       <p>
@@ -30,6 +32,7 @@
             placeholder="Username"
             formControlName="userName"
           />
+          <mat-hint>Please enter Username for your liking.</mat-hint>
         </mat-form-field>
       </p>
       <p>
@@ -40,6 +43,7 @@
             placeholder="Email"
             formControlName="email"
           />
+          <mat-hint>Please enter Your Email.</mat-hint>
         </mat-form-field>
       </p>
       <p>
@@ -51,11 +55,12 @@
             placeholder="Password"
             formControlName="password"
           />
+          <mat-hint>Password must be more then <b>6</b> characters</mat-hint>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field>
-          <mat-label>Choose a date</mat-label>
+          <mat-label>Birthday</mat-label>
           <input matInput [matDatepicker]="picker" />
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle
@@ -70,7 +75,6 @@
         <mat-form-field>
           <input
             type="text"
-            
             #placesRef="ngx-places"
             autocomplete="false"
             ngx-google-places-autocomplete
@@ -79,6 +83,7 @@
             placeholder="City"
             formControlName="city"
           />
+          <mat-hint>Please enter the city you are in. <br> This can be changed later.</mat-hint>
         </mat-form-field>
       </p>
       <p>
@@ -93,11 +98,12 @@
       </p>
 
       <div class="button">
-        <button [disabled]="!Form.valid" type="submit" mat-button>
+        <button [disabled]="!Form.valid" type="submit" mat-raised-button color="primary" >
           Register
         </button>
+        <button mat-raised-button color="accent" (click)="ReturnToHomepage($event)">Cancel</button>
       </div>
+
     </form>
   </mat-card-content>
 </mat-card>
-

@@ -27,6 +27,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@iplab/ngx-file-upload": "^13.0.0",
+    "@kolkov/angular-editor": "^3.0.0-beta.0",
     "@kolkov/ngx-gallery": "^2.0.1",
     "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^8.0.0",

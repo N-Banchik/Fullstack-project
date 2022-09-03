@@ -1,4 +1,5 @@
 <mat-card class="mat-elevation-z4">
+  <div *ngIf="member">
   <mat-card-header>
     <mat-card-title>Hello! {{ member.userName }}</mat-card-title>
     <div>
@@ -85,6 +86,7 @@
       </form>
 
 </mat-card-footer>
+</div>
 </mat-card>
 
 <mat-card *ngIf="photo" class="mat-elevation-z4"> 

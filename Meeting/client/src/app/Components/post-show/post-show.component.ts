@@ -11,7 +11,7 @@ export class PostShowComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.posts);
+   
   }
 
 }

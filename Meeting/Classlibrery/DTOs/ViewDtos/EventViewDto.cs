@@ -8,6 +8,7 @@
         public string? EventLocation { get; set; }
         public DateTime EventDate { get; set; }
         public string? MainPhotoUrl { get; set; }
-        
+        public int HobbyId { get; set; }
+
     }
 }

@@ -60,7 +60,6 @@ export class ExceptionInterceptor implements HttpInterceptor {
 
           default:
             this.openPopUp('Something unexpected want wrong', err.status);
-            console.log(err);
             break;
         }
         throw err;

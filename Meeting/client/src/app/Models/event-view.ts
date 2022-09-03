@@ -5,4 +5,5 @@ export interface EventView {
     eventDate: Date;
     eventLocation: string;
     mainPhotoUrl: string;
+    hobbyId:number;
 }

@@ -11,13 +11,10 @@ import { ExceptionInterceptor } from './Interceptors/exception.interceptor';
 import { NavBarComponent } from './Components/Navigation/nav-bar/nav-bar.component';
 import { SideBarComponent } from './Components/Navigation/side-bar/side-bar.component';
 import { LogInComponent } from './Components/Login/log-in.component';
-
 import { RegistrationComponent } from './Components/registration/registration.component';
-
 import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 import { NotFoundComponent } from './Components/ErrorHandeling/not-found/not-found.component';
 import { ServerErrorComponent } from './Components/ErrorHandeling/server-error/server-error.component';
-import { PhotoUploadComponent } from './Components/photo-upload/photo-upload.component';
 import { CategoriesPageComponent } from './Components/categories-page/categories-page.component';
 import { CategoryShowComponent } from './Components/category-show/category-show.component';
 import { HobbyShowComponent } from './Components/hobby-show/hobby-show.component';
@@ -28,6 +25,10 @@ import { HobbyGuideViewComponent } from './Components/hobby-guide-view/hobby-gui
 import { GuideShowComponent } from './Components/guide-show/guide-show.component';
 import { PostShowComponent } from './Components/post-show/post-show.component';
 import { CreateEventComponent } from './Components/create-event/create-event.component';
+import { RouterModule } from '@angular/router';
+import { CreateGuideComponent } from './Components/create-guide/create-guide.component';
+import { HomeComponent } from './Components/home/home.component';
+
 
 
 
@@ -50,7 +51,10 @@ import { CreateEventComponent } from './Components/create-event/create-event.com
     HobbyGuideViewComponent,
     GuideShowComponent,
     PostShowComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    CreateGuideComponent,
+    HomeComponent
+    
     
   ],
   imports: [
@@ -59,6 +63,7 @@ import { CreateEventComponent } from './Components/create-event/create-event.com
     StyleModule,
     AppRoutingModule,
     HttpClientModule,
+    RouterModule
     
   ],
   providers: [

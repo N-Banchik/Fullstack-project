@@ -5,4 +5,5 @@ export interface Guide {
     creationDate: Date;
     creatorUserName: string;
     editDate: Date;
+    hobbyId:number;
 }

@@ -3,4 +3,5 @@ export interface GuideView {
     title: string;
     creationDate: Date;
     creatorUserName: string;
+    hobbyId:number;
 }

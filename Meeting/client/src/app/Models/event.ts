@@ -14,6 +14,7 @@ export interface Event {
     passed: boolean;
     canceled: boolean;
     creator: Member;
+    hobbyId:number;
     users:Member[]
     posts:Post[]
     photos:Photo[]

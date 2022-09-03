@@ -28,6 +28,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
     MatExpansionModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatMomentModule
+    NgxMatMomentModule,
+    MatTooltipModule,
+    AngularEditorModule
     
     
   ],
@@ -95,7 +99,9 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
     MatExpansionModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatMomentModule
+    NgxMatMomentModule,
+    MatTooltipModule,
+    AngularEditorModule
     
     
   ]

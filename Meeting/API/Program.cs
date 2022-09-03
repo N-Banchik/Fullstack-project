@@ -16,12 +16,12 @@ try
 {
     DataContext context = services.GetRequiredService<DataContext>();
     UserManager<User>? userManager = services.GetRequiredService<UserManager<User>>();
-    //1. add roleManager 
     RoleManager<IdentityRole<int>>? roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
 
 
     SeedData seed = new SeedData(context, userManager, roleManager);
-   await seed.Seed();
+    
+        await seed.Seed();
 }
 catch (Exception)
 {

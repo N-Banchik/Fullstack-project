@@ -11,8 +11,7 @@ export class PreventUnsavedChangesGuard<component extends CanEdit> implements Ca
     component: component,
   ): boolean {
     if(component.Form.dirty) {
-      
-      return confirm("Are you sure you want to continue?\n, any unsaved changed will be lost ")
+      return confirm("Are you sure you want to continue?\n, any unsaved changed will be lost")
     }
     return true;
   }

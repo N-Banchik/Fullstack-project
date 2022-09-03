@@ -30,7 +30,7 @@ export class UserPageComponent implements OnInit {
   ngOnInit(): void {
     this.memberService.getMember().subscribe((member) => {
       this.member = member;
-      console.log(member);
+     
     });
   }
   openUpdateLocation()
@@ -50,7 +50,6 @@ export class UserPageComponent implements OnInit {
   }
 
   handleAddressChange(address: any) {
-    console.log('Address change: ', address);
     let addressFromService=this.addressService.GetAddressToString(address);
     this.Form.controls["city"].setValue(addressFromService.city);
     this.Form.controls["country"].setValue(addressFromService.country);

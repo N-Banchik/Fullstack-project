@@ -18,7 +18,7 @@ export class HobbyShowComponent implements OnInit {
   hobbyParams: HobbyParams;
   pagination!: Pagination;
   constructor(
-    private hobbyService: HobbiesService,
+    public hobbyService: HobbiesService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {
@@ -32,6 +32,7 @@ export class HobbyShowComponent implements OnInit {
       this.hobbyParams.categoryId = this.categoryId;
       this.initFilterForm();
       this.loadHobbies();
+      
     }
   
 

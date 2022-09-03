@@ -35,17 +35,22 @@
 
       <p>
         <mat-form-field>
-            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="eventDate"
-                 >
-            <mat-datepicker-toggle matSuffix ></mat-datepicker-toggle>
-            <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
-                 
-                
-               >
-            </ngx-mat-datetime-picker>
-         </mat-form-field>
+          <input
+            matInput
+            [ngxMatDatetimePicker]="picker"
+            placeholder="Choose a date"
+            formControlName="eventDate"
+          />
+          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker
+            #picker
+            [showSpinners]="true"
+            [showSeconds]="false"
+          >
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+        
       </p>
-      
 
       <p>
         <mat-form-field>
@@ -61,11 +66,22 @@
           />
         </mat-form-field>
       </p>
-      
 
       <div class="button">
-        <button [disabled]="!Form.valid" type="submit" mat-button>
+        <button
+          [disabled]="!Form.valid"
+          type="submit"
+          mat-raised-button
+          color="primary"
+        >
           Submit
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          routerLink="/hobby/{{ hobbyId }}"
+        >
+          Cancel
         </button>
       </div>
     </form>

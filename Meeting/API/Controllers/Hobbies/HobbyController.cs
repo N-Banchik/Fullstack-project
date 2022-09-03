@@ -246,7 +246,7 @@ namespace API.Controllers.Hobbies
         }
 
         [HttpGet("Followed")]
-        public async Task<ActionResult> GetFollowedHobbies(HobbySearchParams searchParams)
+        public async Task<ActionResult> GetFollowedHobbies([FromQuery] HobbySearchParams searchParams)
         {
             try
             {

@@ -22,12 +22,12 @@
         <mat-tab label="Event Description">{{
           event.eventDescription
         }}</mat-tab>
-        <mat-tab label="Where?">location</mat-tab>
+        <mat-tab label="Where?">{{this.event.eventLocation}}</mat-tab>
         <mat-tab label="Event Rules">{{ event.eventRules }}</mat-tab>
-        <mat-tab label="How is Coming?">
+        <mat-tab label="Who is Coming?">
           <div class="container">
             <div
-              *ngFor="let member of members | async as Member"
+              *ngFor="let member of (members | async)"
               class="member"
             >
               <mat-card>{{ member.userName }}</mat-card>
@@ -60,6 +60,7 @@
       >
         leave Event
       </button>
+      <button mat-raised-button color="accent" matTooltip="Back To Hobby" routerLink="/hobby/{{event.hobbyId}}">Back</button>
     </mat-card-actions>
   </mat-card>
 </div>

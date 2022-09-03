@@ -112,7 +112,7 @@ namespace DataAccess.Repository.Reposetories
 
         public async Task<IEnumerable<MemberDto>> GetHobbyUsers(int HobbyId)
         {
-            List<User?> userList = await _context.UserHobbies!.Where(x => x.HobbyId == HobbyId).Include(u => u.User).Select(user => user.User).ToListAsync();
+            List<User?> userList = await _context.UserHobbies!.Where(x => x.HobbyId == HobbyId).Where(x=>x.Following==true).Include(u => u.User).Select(user => user.User).ToListAsync();
             if (userList == null)
             {
                 throw new BadRequestExtention(ErrorMessages.HobbyNotFound);

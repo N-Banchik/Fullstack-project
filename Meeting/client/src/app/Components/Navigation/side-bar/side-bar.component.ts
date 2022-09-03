@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,10 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./side-bar.component.css'],
 })
 export class SideBarComponent implements OnInit {
+  @Output() ToggleSidebarEvent = new EventEmitter();
  
   constructor(private router:Router) {}
 
   ngOnInit(): void {}
 
+  ToggleSidebar() {
+    this.ToggleSidebarEvent.emit();
+  }
   
 }

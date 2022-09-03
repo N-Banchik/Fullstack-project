@@ -1,10 +1,12 @@
 <mat-toolbar color="primary">
+  <a routerLink="/hobbies">Hobbyist</a>
+  <div *ngIf="currentUser$ | async as user">
   <button color="accent" mat-icon-button (click)="ToggleSidebar()">
     <mat-icon>menu</mat-icon>
   </button>
-  <a routerLink="/hobbies">Hobbyist</a>
   <button mat-icon-button>
-      <mat-icon *ngIf="currentUser$ | async as user" routerLink="/hobbies/{{ user.username}}" color="white">account_circle</mat-icon>
+      <mat-icon  routerLink="/hobbies/{{ user.username}}" color="white">account_circle</mat-icon>
         </button>
     <button mat-raised-button (click)="logout()"> Log out</button>
+  </div>
 </mat-toolbar>

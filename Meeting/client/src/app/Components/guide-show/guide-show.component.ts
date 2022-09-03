@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { take } from 'rxjs';
 import { Guide } from 'src/app/Models/guide';
 import { User } from 'src/app/Models/user';
@@ -15,9 +16,10 @@ import { GuideService } from 'src/app/Services/guide.service';
 })
 export class GuideShowComponent implements OnInit {
   guideId: number;
+  hobbyId:number
   user!: User;
   guide: Guide | null = null;
-  form!: FormGroup;
+  Form!: FormGroup;
   editMode: boolean = false;
   canEdit: boolean = false;
   constructor(
@@ -28,6 +30,7 @@ export class GuideShowComponent implements OnInit {
   ) {
     let url = this.router.url;
     this.guideId = +url.split('/')[4];
+    this.hobbyId = +url.split('/')[2];
     accountService.currentUser$.pipe(take(1)).subscribe((user: User | null) => {
       this.user = user as User;
     });
@@ -37,9 +40,9 @@ export class GuideShowComponent implements OnInit {
     this.guideService.getGuide(this.guideId).subscribe((guide: Guide) => {
       this.guide = guide;
       this.canEdit = this.user.username == this.guide!.creatorUserName;
-      this.form=this.formBuilder.group({
-        title: [guide.title,[ Validators.required]],
-        content: [guide.content,[ Validators.required]],
+      this.Form=this.formBuilder.group({
+        guideTitle: [guide.title,[ Validators.required]],
+        guideContent: [guide.content,[ Validators.required]],
       });
       
     }
@@ -57,9 +60,9 @@ export class GuideShowComponent implements OnInit {
   }
 
   submitGuide() {
-    if (this.form!.valid) {
-     this.guide!.content!= this.form!.value.content
-     this.guide?.title!= this.form!.value.title
+    if (this.Form!.valid) {
+     this.guide!.content!= this.Form!.value.content
+     this.guide?.title!= this.Form!.value.title
       this.guideService
         .UpdateGuide(this.guide!)
         .subscribe((guide: Guide) => {
@@ -69,4 +72,19 @@ export class GuideShowComponent implements OnInit {
         );
     }
   }
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...', 
+      toolbarHiddenButtons:[['insertVideo']]
+};
 }

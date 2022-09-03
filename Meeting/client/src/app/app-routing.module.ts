@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesPageComponent } from './Components/categories-page/categories-page.component';
 import { CreateEventComponent } from './Components/create-event/create-event.component';
+import { CreateGuideComponent } from './Components/create-guide/create-guide.component';
 import { NotFoundComponent } from './Components/ErrorHandeling/not-found/not-found.component';
 import { ServerErrorComponent } from './Components/ErrorHandeling/server-error/server-error.component';
 import { EventShowComponent } from './Components/event-show/event-show.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
       {path:'category/:categoryId', component: HobbyShowComponent},
       { path: 'hobby/:hobbyId', component: HobbyPageComponent },
       {path:"hobby/:hobbyId/event/create", component:CreateEventComponent},
+      {path:"hobby/:hobbyId/guide/create", component:CreateGuideComponent},
       {path:"hobby/:hobbyId/event/:eventId", component:EventShowComponent},
       {path:"hobby/:hobbyId/guides/:guideId", component:GuideShowComponent},
     ],
@@ -49,7 +51,6 @@ const routes: Routes = [
     path: 'registration',
     component: RegistrationComponent,
     pathMatch: 'full',
-    canDeactivate: [ new PreventUnsavedChangesGuard<RegistrationComponent>()],
   },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },

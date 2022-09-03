@@ -1,7 +1,97 @@
-<p>home works!
+<div fxLayout="column" fxLayoutAlign="space-between  center">
+  <mat-card class="mb:10px" fxLayout="row" fxLayoutAlign="space-evenly none">
+    <div>
+      <p class="mat-display-2">Events:</p>
+      <div *ngIf="events.length">
+        <app-hobby-events-show [eventView]="events"></app-hobby-events-show>
+      </div>
+      <div *ngIf="!events.length">
+        <p class="mat-display-1">So empty...</p>
+      </div>
+    </div>
+    <mat-divider class="divider" [inset]="true" [vertical]="true"></mat-divider>
+    <p class="mat-display-2">Guides:</p>
+    <div *ngIf="guides.length">
+      <app-hobby-guide-view [guideView]="guides"></app-hobby-guide-view>
+    </div>
+    <div *ngIf="!guides.length">
+      <p class="mat-display-1">
+        <br />So empty...<br />
+        Maybe Try to write new Guide!
+      </p>
+    </div>
+  </mat-card>
+  <mat-card>
+    <mat-card-header class="mat-display-2 hobbies"
+      >My Followed Hobbies:</mat-card-header
+    >
+    <mat-card-content>
+      <div *ngIf="hobbies.length" class="mt:25px content">
+        <div fxLayout="column" fxLayoutAlign=" none">
+          <div
+            fxLayout="row wrap"
+            fxLayoutAlign="center center"
+            fxLayoutGap="10px grid"
+          >
+            <div
+              fxFlexFill
+              fxFlex="33%"
+              fxFlex.xs="100%"
+              fxFlex.sm="25%"
+              *ngFor="let hobby of hobbies"
+            >
+              <mat-card class="mat-elevation-z4">
+                <mat-card-header>
+                  <mat-card-title>
+                    <mat-icon color="primary">apps</mat-icon>
+                    {{ hobby.hobbyName | titlecase }}</mat-card-title
+                  >
+                </mat-card-header>
+                <mat-card-content>
+                  <p>
+                    {{ hobby.Description | titlecase }}
+                  </p>
+                  <mat-divider inset></mat-divider>
+                  <p>
+                    {{ hobby.keyFeatures | titlecase }}
+                  </p>
+                </mat-card-content>
+                <mat-divider inset></mat-divider>
 
+                <mat-card-actions
+                  fxLayout="row"
+                  fxLayoutAlign="center center"
+                  fxLayout.xs="column"
+                  fxLayoutGap="10px"
+                >
+                  <button
+                    mat-raised-button
+                    routerLink="/hobby/{{ hobby.id }}"
+                    routerLinkActive="hobby/{{ hobby.id }}"
+                    color="primary"
+                  >
+                    Go to Hobby!
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </div>
 
+        <div *ngIf="pagination">
+          <mat-paginator
+            [length]="pagination.totalItems"
+            [pageSize]="pagination.itemsPerPage"
+            (page)="pageChanged($event)"
+          >
+          </mat-paginator>
+        </div>
+      </div>
 
-    asdasdas
-    asdasd
-</p>
+      <div *ngIf="!hobbies.length">
+        <p class="mat-display-1">Not following any hobbies. Maybe start now?  </p>
+        <button mat-raised-button color="primary" routerLink="/categories" > Categories</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

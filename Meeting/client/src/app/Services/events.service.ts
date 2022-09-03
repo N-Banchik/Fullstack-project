@@ -100,10 +100,10 @@ export class EventsService {
     ).pipe(tap((response) => this.eventViewCache.set(key, response)));
   }
   getEventsByUser(
-    eventParams: EventParams
+    
   ): Observable<PaginatedResult<EventView[]>> {
     this.EventParams.userId = this.user.id;
-    let key = Object.values(eventParams).join('-');
+    let key = Object.values(this.EventParams).join('-');
     const response = this.eventViewCache.get(key);
 
     if (response) {
@@ -112,7 +112,7 @@ export class EventsService {
 
     return getPaginatedResult<EventView[]>(
       `${this.baseUrl}Creator`,
-      this.appendParams(eventParams),
+      this.appendParams(this.EventParams),
       this.http
     ).pipe(tap((response) => this.eventViewCache.set(key, response)));
   }
@@ -120,10 +120,10 @@ export class EventsService {
     return this.http.get<Member[]>(`${this.baseUrl}${eventId}/Members`);
   }
   getEventsForMember(
-    eventParams: EventParams
+    
   ): Observable<PaginatedResult<EventView[]>> {
     this.EventParams.userId = this.user.id;
-    let key = Object.values(eventParams).join('-');
+    let key = Object.values(this.EventParams).join('-');
     const response = this.eventViewCache.get(key);
 
     if (response) {
@@ -132,7 +132,7 @@ export class EventsService {
 
     return getPaginatedResult<EventView[]>(
       `${this.baseUrl}Member/Events`,
-      this.appendParams(eventParams),
+      this.appendParams(this.EventParams),
       this.http
     ).pipe(tap((response) => this.eventViewCache.set(key, response)));
   }

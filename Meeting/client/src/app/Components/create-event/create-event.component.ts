@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
@@ -7,6 +7,10 @@ import { GoogleAddressService } from 'src/app/Services/google-address.service';
 import { Event } from 'src/app/Models/event';
 import { EventsService } from 'src/app/Services/events.service';
 import { EventCreate } from 'src/app/Models/event-create';
+import {
+  NgxMatDatetimeContent,
+  NgxMatDatetimePicker,
+} from '@angular-material-components/datetime-picker';
 
 @Component({
   selector: 'app-create-event',
@@ -17,20 +21,17 @@ export class CreateEventComponent implements OnInit {
   hobbyId!: number;
   public Form!: FormGroup;
   eventLocation!: string;
-  
+  @ViewChild('picker') picker!: NgxMatDatetimePicker<any>;
   @ViewChild('placesRef') placesRef: GooglePlaceDirective | undefined;
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private router: Router,
     private addressService: GoogleAddressService,
-    private eventService:EventsService
-
+    private eventService: EventsService
   ) {
     let url = this.router.url;
-    this.hobbyId = +url.split('/')[3];
-    console.log(this.hobbyId);
-    
+    this.hobbyId = +url.split('/')[2];
   }
 
   ngOnInit(): void {
@@ -65,6 +66,7 @@ export class CreateEventComponent implements OnInit {
         this.router.navigateByUrl('/hobbies');
       }
     );
+    
   }
-
+  
 }

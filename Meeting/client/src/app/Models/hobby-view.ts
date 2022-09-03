@@ -5,4 +5,5 @@ export interface HobbyView {
     rules: string;
     keyFeatures: string;
     mainPhotoUrl: string;
+    categoryId:number;
 }

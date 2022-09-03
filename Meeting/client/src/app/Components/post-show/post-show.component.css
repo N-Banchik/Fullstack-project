@@ -1,6 +1,6 @@
 .post{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
     height: 100px;

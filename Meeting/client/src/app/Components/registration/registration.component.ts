@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { CanEdit } from 'src/app/Interfaces/can-edit';
@@ -18,10 +19,13 @@ export class RegistrationComponent implements OnInit,CanEdit {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private router: Router,
-    private addressService:GoogleAddressService) {}
-  
+    private addressService:GoogleAddressService,private popUp: MatSnackBar) {}
 
-  ngOnInit(): void {this.InitializeForm();}
+    
+    ngOnInit(): void {this.InitializeForm();}
+    openPopUp(message: string, status: number) {
+      this.popUp.open(status+" "+message,"OK",{duration:3500});
+    };
 
  InitializeForm() {
   this.Form=this.formBuilder.group({
@@ -43,7 +47,7 @@ export class RegistrationComponent implements OnInit,CanEdit {
         this.router.navigateByUrl('/hobbies');
       },
       (error) => {
-        console.log('error', error);
+        this.openPopUp('error', error);
       }
     );
   }
@@ -52,6 +56,11 @@ export class RegistrationComponent implements OnInit,CanEdit {
     let addressFromService=this.addressService.GetAddressToString(address);
     this.Form.controls["city"].setValue(addressFromService.city);
     this.Form.controls["country"].setValue(addressFromService.country);
+  }
+  
+  ReturnToHomepage(e:Event){
+    e.stopImmediatePropagation();
+    this.router.navigateByUrl("/")
   }
 
 }

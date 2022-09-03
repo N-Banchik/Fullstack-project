@@ -69,10 +69,11 @@ namespace API.Controllers.Guides
             }
         }
         [HttpGet("User")]
-        public async Task<ActionResult> GetGuidesForUser(GuideSearchParams searchParams)
+        public async Task<ActionResult> GetGuidesForUser([FromQuery]  GuideSearchParams searchParams)
         {
             try
             {
+                
                 PaginatedList<GuideViewDto>? eventsDto = await _unitOfWork._guideRepository.GetGuidesForUser(searchParams);
                 Response.AddPaginationHeader(eventsDto.CurrentPage, eventsDto.PageSize, eventsDto.TotalCount, eventsDto.TotalPages);
                 return Ok(eventsDto);

@@ -6,6 +6,7 @@ import { HomeComponent } from 'src/app/Components/home/home.component';
 import { UserPageComponent } from 'src/app/Components/user-page/user-page.component';
 import { PhotoUploadComponent } from 'src/app/Components/photo-upload/photo-upload.component';
 import { CategoriesPageComponent } from 'src/app/Components/categories-page/categories-page.component';
+import { HobbyGuideViewComponent } from 'src/app/Components/hobby-guide-view/hobby-guide-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -19,7 +20,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    
     UserPageComponent,
     PhotoUploadComponent,
     
@@ -27,7 +28,7 @@ const routes: Routes = [
   imports: [CommonModule, StyleModule, RouterModule.forChild(routes)],
   exports: [
     RouterModule,
-    HomeComponent,
+    
     UserPageComponent,
     PhotoUploadComponent,
    

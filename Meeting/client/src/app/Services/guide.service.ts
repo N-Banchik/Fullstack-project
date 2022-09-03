@@ -9,6 +9,7 @@ import { User } from '../Models/user';
 import { AccountService } from './account.service';
 import { Observable, of, pipe, take, tap } from 'rxjs';
 import { getPaginatedResult, getPaginationHeaders } from './pagination.service';
+import { GuideCreate } from '../Models/guide-create';
 @Injectable({
   providedIn: 'root'
 })
@@ -59,6 +60,7 @@ export class GuideService {
   GetGuidesForUser(
     guideParams: GuideParams
   ): Observable<PaginatedResult<GuideView[]>> {
+    guideParams.Id=this.user.id
     let key = Object.values(guideParams).join('-');
     const response = this.guideViewCache.get(key);
 
@@ -79,7 +81,7 @@ export class GuideService {
       return of(guide as Guide);}
     return this.http.get<Guide>(`${this.baseUrl}${id}`).pipe(tap((guide)=>this.guides.set(guide.id,guide)));}
 
-    CreateGuide(guide:Guide,hobbyId:number)
+    CreateGuide(guide:GuideCreate,hobbyId:number)
     {
       return this.http.post<Guide>(`${this.baseUrl}`,{Title:guide.title,Content:guide.content,HobbyId:hobbyId});
     }

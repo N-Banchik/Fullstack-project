@@ -8,6 +8,7 @@
         public DateTime CreationDate { get; set; }
         public DateTime? EditDate { get; set; }
         public string? CreatorUserName { get; set; }
-        
+        public int HobbyId { get; set; }
+
     }
 }

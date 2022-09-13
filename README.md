@@ -16,9 +16,6 @@ password: Password123!
 
 The login is managed with Identity.
 
-Disclaimer-
-I know this is not a full and finised project. I really out scoped and due personal life I could not finish this to my strandart.
-
 
 For any questions - Nir.Banchick@gmail.com
 
